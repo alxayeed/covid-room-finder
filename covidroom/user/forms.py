@@ -31,3 +31,11 @@ class RegisterForm(forms.ModelForm):
 
         validate_password(password)
         return password
+
+    def save(self, commit=True):
+        "This will hash the password in admin panel"
+        user = super(RegisterForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user
