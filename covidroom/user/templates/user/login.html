@@ -1,10 +1,14 @@
 {% extends 'user/base.html' %}
 
+{% block title %}
+Login
+{% endblock title %}
+
 {% block content %}
 
 <div class="max-w-xs" style="margin-top: 10%;margin-left: 40%; max-height: 100vh;">
     <div>
-        <h1 class="text-2xl text-center">Registration form</h1>
+        <h1 class="text-2xl text-center">Please Login</h1>
     </div>
     <div>
         <form method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 m-auto">
@@ -25,10 +29,10 @@
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     name="password" id="password" type="password" placeholder="password" required>
 
-                {% if form.errors %}
-                {% for key, value in form.errors.items %}
-                <div class="px-2 py-2 bg-red-500 rounded-md">
-                    <i class="text-xs italic my-2">{{value}}</i>
+                {% if messages %}
+                {% for value in messages %}
+                <div class="px-2 py-2 bg-red-300 rounded-md">
+                    <i class="text-xs italic my-2 mx-2 text-center">{{value}}</i>
                 </div>
                 {% endfor %}
                 {% endif %}
@@ -36,10 +40,15 @@
             </div>
             <div class="flex items-center justify-between">
                 <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline"
                     type="submit" style="text-align: center;">
-                    Sign In
+                    Log in
                 </button>
+
+            </div>
+            <div class="my-4 text-center">
+                <i class="text-sm">Not registered yet? <a class="text-purple-700 text-base" href="{%url 'register'%}">
+                        SIGN UP</a> here</i>
             </div>
         </form>
     </div>

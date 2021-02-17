@@ -1,5 +1,9 @@
 {% extends 'user/base.html' %}
 
+{% block title %}
+Registration
+{% endblock title %}
+
 {% block content %}
 
 <div class="max-w-xs" style="margin-top: 10%;margin-left: 40%; max-height: 100vh;">
@@ -27,7 +31,7 @@
 
                 {% if form.errors %}
                 {% for key, value in form.errors.items %}
-                <div class="px-2 py-2 bg-red-500 rounded-md">
+                <div class="px-2 py-2 bg-pink-400 rounded-md">
                     <i class="text-xs italic my-2">{{value}}</i>
                 </div>
                 {% endfor %}
@@ -38,8 +42,12 @@
                 <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline"
                     type="submit" style="text-align: center;">
-                    Sign In
+                    Sign Up
                 </button>
+            </div>
+            <div class="my-4 text-center">
+                <i class="text-sm">Not registered yet? <a class="text-purple-700 text-base" href="{%url 'login'%}">
+                        LOG IN</a> here</i>
             </div>
         </form>
     </div>
