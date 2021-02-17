@@ -6,7 +6,7 @@ from django.contrib import messages
 
 
 def index(request):
-    return HttpResponse('This is the index page')
+    return render(request, 'user/index.html')
 
 
 def register_user(request):
