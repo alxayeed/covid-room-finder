@@ -1,0 +1,47 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<div class="max-w-xs" style="margin-top: 10%;margin-left: 40%; max-height: 100vh;">
+    <div>
+        <h1 class="text-2xl text-center">Registration form</h1>
+    </div>
+    <div>
+        <form method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 m-auto">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Username
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    name="username" id="username" type="text" placeholder="Username" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    name="password" id="password" type="password" placeholder="password" required>
+
+                {% if form.errors %}
+                {% for key, value in form.errors.items %}
+                <div class="px-2 py-2 bg-red-500 rounded-md">
+                    <i class="text-xs italic my-2">{{value}}</i>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+            <div class="flex items-center justify-between">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline"
+                    type="submit" style="text-align: center;">
+                    Sign In
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}
