@@ -5,10 +5,6 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
 
-def index(request):
-    return render(request, 'user/index.html')
-
-
 def register_user(request):
     form = RegisterForm()
 
@@ -35,7 +31,12 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return HttpResponse(f'login successful for {user}')
+            return redirect('index')
         else:
             messages.error(request, 'Username or Password is incorrect')
     return render(request, 'user/login.html')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')

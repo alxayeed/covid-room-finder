@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # myapps
-    'user'
+    'user',
+    'bookings'
 ]
 
 MIDDLEWARE = [

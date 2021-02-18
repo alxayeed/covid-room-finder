@@ -16,11 +16,13 @@ Covid Room Finder
                     type="submit" formaction="#">
                     See bookings
                 </button>
-                <button
+                <!-- <button
                     class="bg-red-600 hover:bg-red-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
-                    type="submit" formaction="#">
+                    type="submit" formaction="{ url 'logout' }">
                     Logout
-                </button>
+                </button> -->
+                <a class="bg-red-600 hover:bg-red-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                    href="{% url 'logout' %}">Logout</a>
 
             </div>
         </div>
