@@ -36,12 +36,9 @@ Covid Room Finder
                             <label for="rooms">Choose a Room:</label>
                             <select id="room" name="room"
                                 class="appearance-none bg-white border border-gray-400 px-10 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline ml-8">
-                                <option value="Office 1">Office 1</option>
-                                <option value="Office 2">Office 2</option>
-                                <option value="Office 3">Office 3</option>
-                                <option value="Big office">Big office</option>
-                                <option value="Boss office">Boss office</option>
-                                <option value="Additional office">Additional office</option>
+                                {% for room in rooms %}
+                                <option value="{{room.name}}">{{room.name}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="my-1">
