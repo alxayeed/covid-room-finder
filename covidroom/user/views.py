@@ -15,6 +15,8 @@ def register_user(request):
             password = form.cleaned_data.get('password')
 
             form.save()
+            login(request, authenticate(
+                request, username=username, password=password))
             return redirect('index')
         else:
             return render(request, 'user/register_form.html', {'form': form})
@@ -23,6 +25,7 @@ def register_user(request):
 
 
 def login_user(request):
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -31,6 +34,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
+            print(request.user.is_authenticated)
             return redirect('index')
         else:
             messages.error(request, 'Username or Password is incorrect')
