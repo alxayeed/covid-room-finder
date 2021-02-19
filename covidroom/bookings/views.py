@@ -46,17 +46,21 @@ def book_room(request):
     username = request.POST.get('username')
     # print(room, date, name, username, sep='   ')
 
-    room = Room.objects.get(name=room)
-    current_bookings = len(room.booking.filter(date=date))
+    current_room = Room.objects.get(name=room)
+    current_bookings = len(current_room.booking.filter(date=date))
 
-    if current_bookings < room.capacity:
-        print('You can book this room')
+    if current_bookings < current_room.capacity:
+        Booking.objects.create(
+            room=room,
+            username=username,
+            fullname=name,
+            date=date
+        )
     else:
         bookers = []
-        for booking in room.booking.filter(date=date):
+        for booking in current_room.booking.filter(date=date):
             bookers.append(booking.fullname)
 
-        msg = f'{room} is already booked out'
         rooms = Room.objects.all()
         room_info = {}
         for room in rooms:
@@ -65,7 +69,7 @@ def book_room(request):
                 room_info[room.name] = empty
 
         context = {
-            'msg': msg,
+            'current_room': current_room,
             'bookers': bookers,
             "rooms": rooms,
             "room_info": room_info

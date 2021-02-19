@@ -57,14 +57,12 @@ Covid Room Finder
                             <input type="hidden" name="username" value="{{request.user}}">
                         </div>
 
-                        {% if msg %}
-                        <h3>{{msg}} by
+                        {% if room_info %}
+                        <h6> {{current_room}} is already booked out by
                             {% for name in bookers %}
                             {{name}} {% if forloop.last %} . {% else %}, {% endif %}
                             {% endfor %} on this day.
-                        </h3>
-                        {% endif %}
-                        {% if room_info %}
+                        </h6>
                         <i>Try room(s):</i><br>
                         {% for room, space in room_info.items %}
                         {{room}} With open place(s) {{space}} {% if forloop.last %} . {% else %}, {% endif %}
