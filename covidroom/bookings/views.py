@@ -38,20 +38,18 @@ def get_capacity(request):
 
 def book_room(request):
     form = BookingForm(request.POST)
-    # print(form.errors)
 
     room = request.POST.get('room')
     date = request.POST.get('date')
     name = request.POST.get('name')
     username = request.POST.get('username')
-    # print(room, date, name, username, sep='   ')
 
     current_room = Room.objects.get(name=room)
     current_bookings = len(current_room.booking.filter(date=date))
 
     if current_bookings < current_room.capacity:
         Booking.objects.create(
-            room=room,
+            room=current_room,
             username=username,
             fullname=name,
             date=date
@@ -77,3 +75,20 @@ def book_room(request):
         return render(request, 'user/index.html', context)
 
     return redirect('/')
+
+
+def get_bookings(request):
+    all_bookings = Booking.objects.filter(username=request.user)
+    rooms = Room.objects.all()
+
+    context = {
+        'rooms': rooms,
+        'all_bookings': all_bookings
+    }
+    return render(request, 'user/index.html', context)
+
+
+def delete_booking(request, id):
+    Booking.objects.filter(pk=id).delete()
+
+    return redirect('bookings')

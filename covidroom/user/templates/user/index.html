@@ -11,16 +11,10 @@ Covid Room Finder
         <div class="flex-none ">
             <h1 class="text-4xl my-4">Welcome to Covid Room Finder</h1>
             <div class="mr-4">
-                <button
-                    class="bg-blue-400 text-black hover:bg-blue-300 py-2 px-8 rounded focus:outline-none focus:shadow-outline"
-                    type="button" formaction="{% url 'index' %}">
-                    See bookings
-                </button>
-                <!-- <button
-                    class="bg-red-600 hover:bg-red-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
-                    type="submit" formaction="{ url 'logout' }">
-                    Logout
-                </button> -->
+                <a class="bg-blue-400 text-black hover:bg-blue-300 py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                    href="{% url 'index' %}">Home</a>
+                <a class="bg-green-400 text-black hover:bg-green-300 py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                    href="{% url 'bookings' %}">See bookings</a>
                 <a class="bg-red-600 hover:bg-red-700 text-white  py-2 px-8 rounded focus:outline-none focus:shadow-outline"
                     href="{% url 'logout' %}">Logout</a>
 
@@ -28,7 +22,7 @@ Covid Room Finder
         </div>
 
         <div class="flex flex-col justify-center content-center h-full w-12/12">
-            <div class="bg-red-400 shadow-xl rounded py-4 xl:py-20 mb-4 mx-8 pl-8">
+            <div class="bg-red-400 shadow-xl rounded py-4 xl:py-20 mb-4 mx-8 pl-8 flex justify-between">
                 <div>
                     <form method="POST" action="{% url 'book' %}" class="my-4 text-left px-8">
                         {% csrf_token %}
@@ -76,6 +70,37 @@ Covid Room Finder
                             </button>
                         </div>
                     </form>
+                </div>
+                <div class="mr-8 flex-grow">
+                    {% if all_bookings %}
+                    <table class="table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2 ...">Room Name</th>
+                                <th class="w-1/4 ...">Date</th>
+                                <th class="w-1/4 ...">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="">
+                            {% for booking in all_bookings %}
+                            <tr class="my-3">
+                                <td>{{booking.room}}</td>
+                                <td>{{booking.date}}</td>
+                                <td>
+                                    <a class="bg-red-600 hover:bg-red-700 text-white  py-1 px-4 my-2 rounded focus:outline-none focus:shadow-outline"
+                                        href="{% url 'delete' booking.id %}">Cancel</a>
+                                </td>
+                            </tr>
+                            {% endfor%}
+                        </tbody>
+
+                    </table>
+
+
+                    {{booking.room}}
+
+                    {% endif %}
                 </div>
             </div>
             <div class="bg-green-300 shadow-xl mx-8 py-6 xl:pt-8 xl:pb-16 pl-8">
