@@ -9,7 +9,7 @@ Covid Room Finder
 <div class="text-center  mx-16 mb-4">
     <div class="space-y-6">
         <div class="flex-none ">
-            <h1 class="text-4xl my-4">Welcome to Covid Room Finder</h1>
+            <h1 class="text-4xl my-8">Covid Room Finder</h1>
             <div class="mr-4">
                 <a class="bg-blue-400 text-black hover:bg-blue-300 py-2 px-8 rounded focus:outline-none focus:shadow-outline"
                     href="{% url 'index' %}">Home</a>
@@ -54,7 +54,7 @@ Covid Room Finder
                         {% if room_info %}
                         <h6> {{current_room}} is already booked out by
                             {% for name in bookers %}
-                            {{name}} {% if forloop.last %} . {% else %}, {% endif %}
+                            {{name}} {% if forloop.last %} {% else %}, {% endif %}
                             {% endfor %} on this day.
                         </h6>
                         <i>Try room(s):</i><br>
